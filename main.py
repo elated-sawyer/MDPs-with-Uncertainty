@@ -75,7 +75,7 @@ def ParSel_RMDP(ENV, sam_size, MaxStePE_Sam, MaxStePE, gamma, Radius_List, cv_si
 sam_size_WE = 1500
 MaxStePE_WE = 10000
 MaxStePE_Sam = 10  #GP:100; RiSw:10,; MR:10; Predicted Value Record:100
-MaxStePE = 100
+MaxStePE = 100 #evaluation
 MaxEPS = 26
 sampling_seed = 2 
 gamma = 0.85
