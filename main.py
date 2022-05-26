@@ -52,6 +52,7 @@ def ParSel_RSMDP(ENV, sam_size, MaxStePE_Sam, MaxStePE, gamma, Target_COEF_List,
             Best_TAU = Target_COEF[j]
         print("Current Best_Return:", Best_Return, "Current Best_TAU:", Best_TAU)
     return Best_TAU
+# RMDP
 def ParSel_RMDP(ENV, sam_size, MaxStePE_Sam, MaxStePE, gamma, Radius_List, cv_size):
     P_est = np.load("./Sampling/SamSiz" + str(sam_size) + "MaxSte" + str(MaxStePE_Sam) + ".npy")
     Best_Return = 0
