@@ -8,7 +8,7 @@ import shutil
 
 
 #####################################
-#### Generate transition matrix #####
+#### Generate transition kernels ####
 #####################################
 # add pertibetion to the real transition kernel
 def MatGen(file_WETR, ENV, TrainingSize, TestSize, mu, sigma):
@@ -62,7 +62,7 @@ def MatGen(file_WETR, ENV, TrainingSize, TestSize, mu, sigma):
 
 
 #####################################
-#### transition matrix process ######
+#### transition kernel process ######
 #####################################
 # make the transition kernel meet the constraint, P.sum(axis=2)[s, a]==0
 def MatProcess(ENV, P_wPert):
@@ -159,7 +159,7 @@ file_WETR = "Sampling_RiSw_TM-O_L1" """
 
 
 TrainingSize = 1  # General:2, General:1
-TestSize = 1000  # plot 150
+TestSize = 1000  # 1000 (plot: 150)
 sam_size_WE = 1500
 MaxStePE_WE = 10000
 gamma = 0.85
@@ -171,7 +171,7 @@ R_sa = ENV.R_sa
 ###################
 #### DRO_MAIN #####
 ###################
-#### Generate transition matrix #####
+#### Generate transition kernels #####
 mu = np.array\
     ([0,0,0,0,0, 0,0,1,1,2, 2.5,2.5,3,3,4]) #4
     # ([0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0]) #4

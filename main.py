@@ -42,7 +42,7 @@ def ParSel_RSMDP(ENV, sam_size, MaxStePE_Sam, MaxStePE, gamma, Target_COEF_List,
     Best_TAU = 0
     Best_Return = 0
     for j in range(len(Target_list)):
-        # Obtain policy via solving robust satisficing model using estimated transition matrix
+        # Obtain policy via solving robust satisficing model using estimated transition kernel
         TAU_real, Probs, RS_Policy = RSMDP(ENV.nS, ENV.nA, P_est, ENV.R_sa, Target_list[j], gamma)
         Model = "RSMDP" + str(Target_COEF[j])
         # Randomized policy
@@ -58,7 +58,7 @@ def ParSel_RMDP(ENV, sam_size, MaxStePE_Sam, MaxStePE, gamma, Radius_List, cv_si
     Best_Return = 0
     Best_RAD = 0
     for j in range(len(Radius_List)):
-        # Obtain policy via solving robust satisficing model using estimated transition matrix
+        # Obtain policy via solving robust satisficing model using estimated transition kernel
         V_vi, R_policy = value_iteration_robust(P_est, ENV.nS, ENV.nA, ENV.R_sa, gamma, MaxStePE, tol, Radius_List[j])
         Model = "RMDP" + str(Radius_List[j])
         # Deterministic policy
@@ -133,7 +133,7 @@ for sam_size in np.arange(1, MaxEPS, 1, dtype=int):
     Target_COEF = np.array([0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.0, 0.97, 0.98, 0.99])
     Target_list = Target_COEF*Target
     for j in range(len(Target_list)):
-        # Obtain policy via solving robust satisficing model using estimated transition matrix
+        # Obtain policy via solving robust satisficing model using estimated transition kernel
         TAU_real, Probs, RS_Policy = RSMDP(ENV.nS, ENV.nA, P_est, ENV.R_sa, Target_list[j], gamma)
         print(Probs.sum(axis=1))
         Model = "RSMDP" + str(Target_COEF[j])
@@ -161,7 +161,7 @@ Target, policy = Dual(ENV.nS, ENV.nA, P_est, ENV.R_sa, gamma)
 Target_COEF = np.array([0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.0, 0.97, 0.98, 0.99])
 Target_list = Target_COEF*Target
 for j in range(len(Target_list)):
-    # Obtain policy via solving robust satisficing model using estimated transition matrix
+    # Obtain policy via solving robust satisficing model using estimated transition kernel
     TAU_real, Probs, RS_Policy = RSMDP(ENV.nS, ENV.nA, P_est, ENV.R_sa, Target_list[j], gamma)
     Model = "RSMDP" + str(Target_COEF[j])
     # Deterministic policy
@@ -247,7 +247,7 @@ for TAU in Target_COEF:
     Target_list = Target_COEF*Target
     ## RSMDP_OS ##
     for j in range(len(Target_list)):
-        # Obtain policy via solving robust satisficing model using estimated transition matrix
+        # Obtain policy via solving robust satisficing model using estimated transition kernel
         TAU_real, Probs, RS_Policy = RSMDP(ENV.nS, ENV.nA, P_est, ENV.R_sa, Target_list[j], gamma)
         Model = "RSMDP" + str(Target_COEF[j])
         # Deterministic policy
