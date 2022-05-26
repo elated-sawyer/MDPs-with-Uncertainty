@@ -12,7 +12,6 @@
 **ENV.py**: experimental environments, including ENV_GW, ENV_MR, ENV_RiSw.<br>
 **VI.py**: dynamic programming methods, including value iteration, robust value iteration(RMDP).<br>
 **SAMpling.py**: estimate transition kernel under different purposes.<br>
-*“Backup” section in different files* should be ignored.<br>
 
 ## Data
 **EXP_Results_...**: experimental results in [Improvements on Percentile]<br>
