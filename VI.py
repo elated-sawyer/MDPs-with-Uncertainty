@@ -51,7 +51,7 @@ def value_iteration_robust(P, nS, nA, R_sa, gamma, max_iteration, tol, radius):
                 i = nS - 1
                 O = PP.copy()
                 eta = np.min([1 - PP[index[0]], radius / 2])
-                O[index[0]] = eta + PP[index[0]]  # the sum of transition matrix is equal to 1
+                O[index[0]] = eta + PP[index[0]]  # the sum of transition kernel is equal to 1
                 while eta > 0 and i >= 0:
                     O[index[i]] = np.round(O[index[i]] - np.min([eta, O[index[i]]]), 3)
                     eta = np.round(eta - np.min([eta, PP[index[i]]]), 3)
