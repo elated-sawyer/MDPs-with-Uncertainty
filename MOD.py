@@ -86,21 +86,3 @@ def RSMDP(nS, nA, P_est, R_sa, TAU, Gamma):
 ######## Backup #########
 #########################
 
-def DRMDP(nS, nA, p_est, r, V, gamma, theta=0.0, k=1):
-# Distributionally robust MDPs
-    N = p_est.shape[0]
-    model = ro.Model()
-    # variables
-    p = model.dvar((N, nS))
-    # objective function
-    model.min(r + (p.sum(axis=0) * (1/N) * (gamma * V)).sum())
-    # constraints
-    model.st(rso.norm((p - p_est).reshape(nS * N), k) * (1 / N) <= theta**k)  # L-k norm
-    model.st(p >= 0)
-    model.st(p <= 1)
-    model.st(p.sum(axis=1) == 1)
-    model.solve(msk)
-
-    V_val = model.get()
-    p_sol = p.get()
-    return V_val, p_sol

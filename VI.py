@@ -1,5 +1,4 @@
 import numpy as np
-from MOD import DRMDP
 
 # bellman optimality equation
 def BellmanOp(P, V, R_sa, gamma):
@@ -79,30 +78,4 @@ def value_iteration_robust(P, nS, nA, R_sa, gamma, max_iteration, tol, radius):
 #########################
 ######## Backup #########
 #########################
-# Distributionally robust MDPs
-def value_iteration_DRO(p_est, nS, nA, R_sa, gamma, theta=0.9, max_iteration=10000, tol=1e-3):
-    V = np.zeros((nS,), dtype=float)
-    V.fill(1000)
-    policy = np.zeros(nS, dtype=int)
 
-    for iter_count in range(max_iteration):
-        newV = np.zeros(nS)
-        for state in range(nS):
-            BV = np.zeros(nA)
-            for action in range(nA):
-                # Ref BellmanOp: BV[action] = R_sa[state][action] + np.sum(P[state][action] * (gamma * V))
-                BV[action], p_temp = DRMDP(nS, nA, p_est[:, state, action, :], R_sa[state][action], V, gamma, theta)
-                # print("empirical transition matrix", p_est[:,state,action,:])
-                # print("state", state, "action", action, p_temp)
-            newV[state] = BV.max()
-        Vdiff = np.max(np.abs(newV - V))
-        V = newV
-        print(V)
-        if Vdiff < tol:
-            break
-    for state in range(nS):
-        BV = np.zeros(nA)
-        for action in range(nA):
-            BV[action], p_temp = DRMDP(nS, nA, p_est[:, state, action, :], R_sa[state][action], V, gamma, theta)
-        policy[state] = np.argmax(BV)
-    return V, policy
