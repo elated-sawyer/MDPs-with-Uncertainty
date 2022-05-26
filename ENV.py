@@ -1,7 +1,6 @@
 import numpy as np
 
 class ENV_GW(object):
-
     def __init__(self):
         self.nS = 24
         self.nA = 4
